@@ -1,0 +1,18 @@
+{
+    "medicines": [
+      { "id": 1, "name": "CAN ", "price": 59 },
+      { "id": 2, "name": "Sulban ", "price": 250 },
+      { "id": 3, "name": "loyalty", "price": 130 }
+    ],
+    "productlist": [
+      { "id": 1, "name": "Fertilizer ", "price": 5000 },
+      { "id": 2, "name": "Pesticide ", "price": 200 },
+      { "id": 3, "name": "Herbicide ", "price": 350 }
+    ],
+    "users": [
+      { "id": 1, "username": "Diana", "password": "password123" },
+      { "id": 2, "username": "Jacinta", "password": "password456" }
+    ],
+    "orders": []
+  }
+  
