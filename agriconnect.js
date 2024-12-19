@@ -1,108 +1,120 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const apiUrl = 'http://localhost:3000';
+let cart = [];
+let medicines = []; // Declare medicines array to store fetched medicines
 
-//     // Wait for the DOM to fully load
-// document.addEventListener("DOMContentLoaded", () => {
-    // Select buttons by their IDs
-    const loginButton = document.getElementById("loginButton");
-    const registerButton = document.getElementById("registerButton");
+// Modal elements
+const loginModal = document.getElementById('login-modal');
+const registerModal = document.getElementById('register-modal');
 
-    // Redirect to login.html
-    loginButton.addEventListener("click", () => {
-        window.location.href = "login.html";
-    });
+// Button elements
+const loginBtn = document.getElementById('login-btn');
+const registerBtn = document.getElementById('register-btn');
+const closeLogin = document.getElementById('close-login');
+const closeRegister = document.getElementById('close-register');
 
-    // Redirect to register.html
-    registerButton.addEventListener("click", () => {
-        window.location.href = "register.html";
-    });
-});
-
-// Function to show Login form (example implementation)
-function showLoginForm() {
-    // You can create and display a login form dynamically or redirect to a login page
-    const loginForm = `
-        <div id="loginForm">
-            <h3>Login</h3>
-            <input type="text" placeholder="Username" id="username">
-            <input type="password" placeholder="Password" id="password">
-            <button onclick="submitLogin()">Submit</button>
-            <button onclick="closeForm()">Close</button>
-        </div>
-    `;
-    document.body.insertAdjacentHTML("beforeend", loginForm);
+// Open login modal
+loginBtn.onclick = function() {
+    loginModal.style.display = "block";
 }
 
-// Function to show Register form (example implementation)
-function showRegisterForm() {
-    const registerForm = `
-        <div id="registerForm">
-            <h3>Register</h3>
-            <input type="text" placeholder="Full Name" id="fullName">
-            <input type="email" placeholder="Email" id="email">
-            <input type="password" placeholder="Password" id="registerPassword">
-            <button onclick="submitRegister()">Submit</button>
-            <button onclick="closeForm()">Close</button>
-        </div>
-    `;
-    document.body.insertAdjacentHTML("beforeend", registerForm);
+// Open register modal
+ registerBtn.onclick = function() {
+    registerModal.style.display = "block";
 }
 
-// Function to handle Login submission (example)
-function submitLogin() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    alert(`Logging in with Username: ${username}`);
-    // Here, you can send the data to a server using fetch() or XMLHttpRequest
-    closeForm();
+// Close login modal
+closeLogin.onclick = function() {
+    loginModal.style.display = "none";
 }
 
-// Function to handle Register submission (example)
-function submitRegister() {
-    const fullName = document.getElementById("fullName").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("registerPassword").value;
-    alert(`Registering with Full Name: ${fullName}, Email: ${email}`);
-    // Send the registration data to a server here
-    closeForm();
+// Close register modal
+closeRegister.onclick = function() {
+    registerModal.style.display = "none";
 }
 
-// Function to close the forms
-function closeForm() {
-    const form = document.getElementById("loginForm") || document.getElementById("registerForm");
-    if (form) {
-        form.remove();
+// Fetch medicines from db.json
+async function fetchMedicines() {
+    try {
+        const response = await fetch('db.json');
+        const data = await response.json();
+        medicines = data.medicines; // Store fetched medicines in the global array
+        displayMedicines(medicines);
+    } catch (error) {
+        console.error('Error fetching medicines:', error);
     }
 }
 
-const apiUrl = 'http://localhost:3001'; 
-    const productList = document.getElementById('productList');
-    const  cartItems = document.getElementById('cartItems');
-
-    const fetchProducts = async () => {
-        const response = await fetch(`${'http://localhost:3001'}/medicines`);
-        const medicines = await response.json();
-
-        productList.innerHTML = '';
-        medicines.forEach((medicine) => {
-            const div = document.createElement('div');
-            div.className = 'product';
-            div.innerHTML = `
-                <h3>${medicine.name}</h3>
-                <p>Price: $${medicine.price}</p>
-                <button onclick="addToCart(${medicine.id}, '${medicine.name}', ${medicine.price})">Add to Cart</button>
-            `;
-            productList.appendChild(div);
-        });
-    };
-    const addToCart = (id, name, price) => {
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
-            <h3>${name}</h3>
-            <p>Price: $${price}</p>
+// Display medicines
+function displayMedicines(medicines) {
+    const medicinesContainer = document.getElementById('medicines');
+    medicinesContainer.innerHTML = '';
+    medicines.forEach(medicine => {
+        const medicineDiv = document.createElement('div');
+        medicineDiv.className = 'product';
+        medicineDiv.innerHTML = `
+            <span>${medicine.name} - $${medicine.price}</span>
+            <p>${medicine.description}</p> <!-- Display the description -->
+            <select id="quantity-${medicine.id}">
+                ${Array.from({ length: medicine.quantity }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join('')}
+            </select>
+            <button class="add-to-cart" onclick="addToCart(${medicine.id})">Add to Cart</button>
         `;
-        cartItems.appendChild(cartItem);
-    };
+        medicinesContainer.appendChild(medicineDiv);
+    });
+}
 
-    fetchProducts();
+// Add to cart
+function addToCart(id) {
+    const quantitySelect = document.getElementById(`quantity-${id}`);
+    const quantity = parseInt(quantitySelect.value, 10); // Get selected quantity
+    console.log('Adding to cart:', id, 'Quantity:', quantity); // Debugging statement
+
+    const medicine = cart.find(item => item.id === id);
+    if (medicine) {
+        medicine.quantity += quantity; // Update quantity
+    } else {
+        cart.push({ id, quantity }); // Add new item with selected quantity
+    }
+    console.log('Current cart:', cart); // Debugging statement
+    displayCart(); // Update the cart display
+}
+
+// Display cart
+function displayCart() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    cartItemsContainer.innerHTML = ''; // Clear previous cart items
+    cart.forEach(item => {
+        const medicine = medicines.find(med => med.id === item.id);
+        if (medicine) { // Check if medicine exists
+            const cartItemDiv = document.createElement('div');
+            cartItemDiv.className = 'cart-item';
+            cartItemDiv.innerHTML = `
+                <span>${medicine.name} - $${medicine.price} x ${item.quantity}</span>
+                <button class="remove-from-cart" onclick="removeFromCart(${item.id})">Remove</button>
+            `;
+            cartItemsContainer.appendChild(cartItemDiv);
+        }
+    });
+}
+
+// Remove from cart
+function removeFromCart(id) {
+    const index = cart.findIndex(item => item.id === id);
+    if (index > -1) {
+        cart.splice(index, 1);
+    }
+    displayCart(); // Update the cart display after removal
+}
+
+// Checkout
+document.getElementById('checkout-btn').addEventListener('click', () => {
+    if (cart.length > 0) {
+        alert('Checkout successful!');
+        cart = []; // Clear the cart after checkout
+        displayCart(); // Update the cart display
+    } else {
+        alert('Your cart is empty!');
+    }
+});
+
+// Initialize
+fetchMedicines();

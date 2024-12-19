@@ -1,18 +1,68 @@
 {
-    "medicines": [
-      { "id": 1, "name": "CAN ", "price": 59 },
-      { "id": 2, "name": "Sulban ", "price": 250 },
-      { "id": 3, "name": "loyalty", "price": 130 }
-    ],
-    "productlist": [
-      { "id": 1, "name": "Fertilizer ", "price": 5000 },
-      { "id": 2, "name": "Pesticide ", "price": 200 },
-      { "id": 3, "name": "Herbicide ", "price": 350 }
-    ],
-    "users": [
-      { "id": 1, "username": "Diana", "password": "password123" },
-      { "id": 2, "username": "Jacinta", "password": "password456" }
-    ],
-    "orders": []
-  }
+  "medicines": [
+      {
+          "id": 1,
+          "name": "Dog Food",
+          "category": "Animal Feed",
+          "quantity": 50,
+          "price": 25.99,
+          "description": "High-quality dog food for all breeds."
+        },
+        {
+          "id": 2,
+          "name": "Cat Food",
+          "category": "Animal Feed",
+          "quantity": 30,
+          "price": 22.50,
+          "description": "Nutritious cat food for healthy growth."
+        },
+        {
+          "id": 3,
+          "name": "Cattle Feed",
+          "category": "Animal Feed",
+          "quantity": 100,
+          "price": 45.00,
+          "description": "Specially formulated feed for cattle."
+        },
+        {"id": 4,
+    "name": "Antibiotic Injection",
+    "category": "Veterinary Medicines",
+    "quantity": 20,
+    "price": 15.00,
+    "description": "Antibiotic injection for livestock."
+  },
+  {
+    "id": 5,
+    "name": "Flea and Tick Treatment",
+    "category": "Veterinary Medicines",
+    "quantity": 25,
+    "price": 18.75,
+    "description": "Effective treatment for fleas and ticks in pets."
+  },
+  {
+    "id": 6,
+    "name": "Fertilizer",
+    "category": "Farming Supplies",
+    "quantity": 200,
+    "price": 30.00,
+    "description": "Organic fertilizer for all types of crops."
+  },
+  {
+      "id": 7,
+      "name": "Pesticide",
+      "category": "Farming Supplies",
+      "quantity": 150,
+      "price": 40.00,
+      "description": "Effective pesticide for crop protection."
+    },
+    {
+      "id": 8,
+      "name": "Seed Packets",
+      "category": "Farming Supplies",
+      "quantity": 500,
+      "price": 5.00,
+      "description": "Various seed packets for planting."
+    }
+  ]
+}
   
