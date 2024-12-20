@@ -49,6 +49,7 @@
     </style>
 </head>
 <body>
+  
     <header>
         <h1>Agriconnect</h1>
         <nav>
@@ -67,7 +68,22 @@
             <button id="checkout-btn">Checkout</button>
         </section>
     </main>
-
+    <div id="edit-modal" style="display:none;">
+        <div>
+            <h2>Edit Medicine</h2>
+            <input type="hidden" id="edit-medicine-id">
+            <label for="edit-medicine-name">Name:</label>
+            <input type="text" id="edit-medicine-name">
+            <label for="edit-medicine-price">Price:</label>
+            <input type="number" id="edit-medicine-price" step="0.01">
+            <label for="edit-medicine-description">Description:</label>
+            <textarea id="edit-medicine-description"></textarea>
+            <label for="edit-medicine-quantity">Quantity:</label>
+            <input type="number" id="edit-medicine-quantity">
+            <button id="save -edit-btn">Save</button>
+            <button id="close-edit">Close</button>
+        </div>
+    </div>
     <!-- Login Modal -->
     <div id="login-modal" class="modal">
         <div class="modal-content">

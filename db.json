@@ -1,59 +1,67 @@
 {
   "medicines": [
-      {
-          "id": 1,
-          "name": "Dog Food",
-          "category": "Animal Feed",
-          "quantity": 50,
-          "price": 25.99,
-          "description": "High-quality dog food for all breeds."
-        },
-        {
-          "id": 2,
-          "name": "Cat Food",
-          "category": "Animal Feed",
-          "quantity": 30,
-          "price": 22.50,
-          "description": "Nutritious cat food for healthy growth."
-        },
-        {
-          "id": 3,
-          "name": "Cattle Feed",
-          "category": "Animal Feed",
-          "quantity": 100,
-          "price": 45.00,
-          "description": "Specially formulated feed for cattle."
-        },
-        {"id": 4,
-    "name": "Antibiotic Injection",
-    "category": "Veterinary Medicines",
-    "quantity": 20,
-    "price": 15.00,
-    "description": "Antibiotic injection for livestock."
-  },
-  {
-    "id": 5,
-    "name": "Flea and Tick Treatment",
-    "category": "Veterinary Medicines",
-    "quantity": 25,
-    "price": 18.75,
-    "description": "Effective treatment for fleas and ticks in pets."
-  },
-  {
-    "id": 6,
-    "name": "Fertilizer",
-    "category": "Farming Supplies",
-    "quantity": 200,
-    "price": 30.00,
-    "description": "Organic fertilizer for all types of crops."
-  },
-  {
+    {
+      "id": 1,
+      "name": "Dog Food",
+      "category": "Animal Feed",
+      "quantity": 50,
+      "price": 25.99,
+      "description": "High-quality dog food for all breeds.",
+      "image": "Images/Pet food packaging design.jpeg"
+    },
+    {
+      "id": 2,
+      "name": "Cat Food",
+      "category": "Animal Feed",
+      "quantity": 30,
+      "price": 22.50,
+      "description": "Nutritious cat food for healthy growth.",
+      "image": "https://via.placeholder.com/150?text=Cat+Food"
+    },
+    {
+      "id": 3,
+      "name": "Cattle Feed",
+      "category": "Animal Feed",
+      "quantity": 100,
+      "price": 45.00,
+      "description": "Specially formulated feed for cattle.",
+      "image": "https://via.placeholder.com/150?text=Cattle+Feed"
+    },
+    {
+      "id": 4,
+      "name": "Antibiotic Injection",
+      "category": "Veterinary Medicines",
+      "quantity": 20,
+      "price": 15.00,
+      "description": "Antibiotic injection for livestock.",
+      "image": "https://via.placeholder.com/150?text=Antibiotic+Injection"
+    },
+    {
+      "id": 5,
+      "name": "Flea and Tick Treatment",
+      "category": "Veterinary Medicines",
+      "quantity": 25,
+      "price": 18.75,
+      "description": "Effective treatment for fleas and ticks in pets.",
+      "image": "https://via.placeholder.com/150?text=Flea+and+Tick+Treatment"
+    },
+    {
+      "id": 6,
+      "name": "Fertilizer",
+      "category": "Farming Supplies",
+      "quantity": 200,
+      "price": 30.00,
+      "description": "Organic fertilizer for all types of crops.",
+      "image": "https://via.placeholder.com/150?text=Fertilizer"
+    },
+    {
       "id": 7,
       "name": "Pesticide",
       "category": "Farming Supplies",
       "quantity": 150,
       "price": 40.00,
-      "description": "Effective pesticide for crop protection."
+      "description": "Effective pesticide for crop protection.",
+      "image": "https://via.placeholder.com/150?text=Pesticide"
     },
     {
       "id": 8,
@@ -61,8 +69,8 @@
       "category": "Farming Supplies",
       "quantity": 500,
       "price": 5.00,
-      "description": "Various seed packets for planting."
+      "description": "Various seed packets for planting.",
+      "image": "https://via.placeholder.com/150?text=Seed+Packets"
     }
   ]
 }
-  

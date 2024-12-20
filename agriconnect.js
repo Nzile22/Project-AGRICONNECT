@@ -17,7 +17,7 @@ loginBtn.onclick = function() {
 }
 
 // Open register modal
- registerBtn.onclick = function() {
+registerBtn.onclick = function() {
     registerModal.style.display = "block";
 }
 
@@ -35,11 +35,15 @@ closeRegister.onclick = function() {
 async function fetchMedicines() {
     try {
         const response = await fetch('db.json');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
         const data = await response.json();
         medicines = data.medicines; // Store fetched medicines in the global array
         displayMedicines(medicines);
     } catch (error) {
         console.error('Error fetching medicines:', error);
+        alert('Failed to load medicines. Please try again later.'); // User feedback
     }
 }
 
@@ -51,6 +55,7 @@ function displayMedicines(medicines) {
         const medicineDiv = document.createElement('div');
         medicineDiv.className = 'product';
         medicineDiv.innerHTML = `
+            <img src="${medicine.image}" alt="${medicine.name}" style="width:100px; height:100px;">
             <span>${medicine.name} - $${medicine.price}</span>
             <p>${medicine.description}</p> <!-- Display the description -->
             <select id="quantity-${medicine.id}">
@@ -89,7 +94,7 @@ function displayCart() {
             cartItemDiv.className = 'cart-item';
             cartItemDiv.innerHTML = `
                 <span>${medicine.name} - $${medicine.price} x ${item.quantity}</span>
-                <button class="remove-from-cart" onclick="removeFromCart(${item.id})">Remove</button>
+                <button class="remove-from-cart" onclick="removeFromCart(${ item.id})">Remove</button>
             `;
             cartItemsContainer.appendChild(cartItemDiv);
         }
